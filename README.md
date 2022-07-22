@@ -3,7 +3,24 @@
 
 [Slides -> github.com/DavidWells/advanced-markdown](https://github.com/DavidWells/advanced-markdown/)
 
-## Table of Contents
+## Packages To be Introduced
+- Django
+- Django Rest Framework
+- Celery
+- Django Anymail (Mailgun) `Production`
+- Factory Boy
+- Pillow
+- Paystack / Flutterwave
+- Django Redis
+- Isort
+- Flake8
+- Django mptt > (Highly Unlikely)
+- Coverage
+- Pytest
+- Celery Beat
+
+`Other Packages will be included when needed`
+
 <!-- AUTO-GENERATED-CONTENT:START (TOC:collapse=true&collapseText="Click to expand") -->
 <details>
 <summary>"Click to expand"</summary>
