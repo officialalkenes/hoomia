@@ -29,7 +29,8 @@
 <summary>"Click to expand"</summary>
 
 - [Setup](#setup)
-- [Markdown basics](#markdown-basics)
+- [Features](#features)
+- [Deployment Options](#deployment-options)
 - [Advanced Formatting tips](#advanced-formatting-tips)
   - [`left` alignment](#left-alignment)
   - [`right` alignment](#right-alignment)
@@ -89,6 +90,22 @@ Installing Requirements.txt
 ```bash
 $ pip install -r requirements.txt
 ```
+
+## Features
+
+- Multi Vendor Ecommerce Store
+- Carting System 'cache and session'
+- User Authentication
+- Coupon System
+- Referral Coupon
+- Payment Method (On delivery and Pay before delivery)
+- Newsletter and Subscribers Mail
+
+## Deployment Options
+- aws ec2
+- heroku
+- python anywhwere
+- Digital ocean
 
 - **Open** - Anyone can submit content, fix typos & update anything via pull requests
 - **Version control** - Roll back & see the history of any given post
@@ -208,7 +225,7 @@ Collapsing large blocks of Markdown text
  1. Put an **empty line** after the `<summary>` block.
  2. *Insert your markdown syntax*
  3. Put an **empty line** before the `</details>` tag
- 
+
 </details>
 
 ```
@@ -218,7 +235,7 @@ Collapsing large blocks of Markdown text
  1. Put an **empty line** after the `<summary>` block.
  2. *Insert your markdown syntax*
  3. Put an **empty line** before the `</details>` tag
- 
+
 </details>
 ```
 
