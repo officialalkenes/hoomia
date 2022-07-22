@@ -1,7 +1,7 @@
 # Hoomia
 ## (A django Ecommerce store like Jumia. This Repo will be very available for any and every)
 
-[Slides -> github.com/DavidWells/advanced-markdown](https://github.com/DavidWells/advanced-markdown/)
+<!-- [Slides -> github.com/DavidWells/advanced-markdown](https://github.com/DavidWells/advanced-markdown/) -->
 
 ## Packages To be Introduced
 - Django
@@ -20,6 +20,7 @@
 - Celery Beat
 - Postgresql (Dev)
 - Docker Postgressql (Production)
+- python-decouple (Personal Preference)
 
 `Other Packages will be included when needed`
 
