@@ -88,7 +88,7 @@ Note: `redis` installation can be tedious for windows user. I might include a in
 Installing Requirements.txt
 ```bash
 $ pip install -r requirements.txt
-
+```
 
 - **Open** - Anyone can submit content, fix typos & update anything via pull requests
 - **Version control** - Roll back & see the history of any given post
