@@ -1,4 +1,5 @@
-# Advanced Markdown Guide
+# Hoomia
+## (A django Ecommerce store like Jumia. This Repo will be very available for any and every)
 
 [Slides -> github.com/DavidWells/advanced-markdown](https://github.com/DavidWells/advanced-markdown/)
 
