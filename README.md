@@ -14,18 +14,21 @@
 - Django Redis
 - Isort
 - Flake8
-- Django mptt > (Highly Unlikely)
+- Django mptt > Highly Unlikely
 - Coverage
 - Pytest
 - Celery Beat
+- Postgresql (Dev)
+- Docker Postgressql (Production)
 
 `Other Packages will be included when needed`
 
+## Intallation Guide
 <!-- AUTO-GENERATED-CONTENT:START (TOC:collapse=true&collapseText="Click to expand") -->
 <details>
 <summary>"Click to expand"</summary>
 
-- [Why markdown?](#why-markdown)
+- [Setup](#setup)
 - [Markdown basics](#markdown-basics)
 - [Advanced Formatting tips](#advanced-formatting-tips)
   - [`left` alignment](#left-alignment)
@@ -43,9 +46,49 @@
 </details>
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-## Why markdown?
+## Setup
 
-Markdown is a universal doc format that is easy to write and easy to add to a version control system.
+Create a Virtual Env (Windows)
+
+```bash
+$ py -m venv venv
+```
+
+Create a Virtual Env (Linux)
+
+```bash
+$ virtualenv venv
+```
+
+Activating The Environment (Windows)
+```powershell
+$ venv/Scripts/activate
+```
+
+Activating The Environment (Linux)
+```powershell
+$ source venv/bin/activate
+```
+
+Cloning this Repo to the same directory
+```powershell
+$ git clone https://github.com/officialalkenes/hoomia.git .
+```
+
+Cloning this Repo
+```powershell
+$ git clone https://github.com/officialalkenes/hoomia.git
+```
+
+
+Install developer and application packages.
+Note: `redis` installation can be tedious for windows user. I might include a installation guideline in the future.
+`rabbitmq` is very easy to use also
+
+Installing Requirements.txt
+```bash
+$ pip install -r requirements.txt
+
 
 - **Open** - Anyone can submit content, fix typos & update anything via pull requests
 - **Version control** - Roll back & see the history of any given post
