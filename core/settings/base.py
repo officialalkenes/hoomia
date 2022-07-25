@@ -32,6 +32,7 @@ THIRD_PARTY_APPS = [
 CUSTOM_APPS = [
     'apps.cart.apps.CartConfig',
     'apps.user.apps.UserConfig',
+    'apps.profiles.apps.ProfilesConfig',
     'apps.product.apps.ProductConfig',
     'apps.inventory.apps.InventoryConfig',
 ]
