@@ -121,7 +121,7 @@ $ pip install -r requirements.txt
 
 ## Markdown basics
 
-The basics of markdown can be found [here](https://guides.github.com/features/mastering-markdown/) & [here](https://daringfireball.net/projects/markdown/). Super easy!
+A related example of is [here](https://www.jumia.com.ng/) & [here](https://www.amazon.com/). Expect some Modifications though.
 
 ## Advanced Formatting tips
 
