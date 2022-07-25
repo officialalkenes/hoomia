@@ -30,7 +30,10 @@ THIRD_PARTY_APPS = [
 ]
 
 CUSTOM_APPS = [
-    
+    'apps.cart.apps.CartConfig',
+    'apps.user.apps.UserConfig',
+    'apps.product.apps.ProductConfig',
+    'apps.inventory.apps.InventoryConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + CUSTOM_APPS
