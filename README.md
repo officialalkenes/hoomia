@@ -17,11 +17,14 @@
 - Django mptt > Highly Unlikely
 - Coverage
 - Pytest
+- pytest-django
 - Celery Beat
 - Postgresql (Dev)
 - Docker Postgressql (Production)
 - python-decouple (Personal Preference)
-
+- Nginx
+- psycopg2 (Postgres)
+- 
 `Other Packages will be included when needed`
 
 ## Intallation Guide
@@ -107,6 +110,7 @@ $ pip install -r requirements.txt
 - heroku
 - python anywhwere
 - Digital ocean
+---
 
 - **Open** - Anyone can submit content, fix typos & update anything via pull requests
 - **Version control** - Roll back & see the history of any given post
