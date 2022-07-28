@@ -12,6 +12,8 @@ coreschema                    0.0.4
 cryptography                  37.0.4
 defusedxml                    0.7.1
 Django                        4.0.6
+django-js-asset               2.0.0
+django-mptt                   0.13.4
 django-templated-mail         1.1.1
 djangorestframework           3.13.1
 djangorestframework-simplejwt 4.8.0
@@ -26,7 +28,7 @@ Jinja2                        3.1.2
 MarkupSafe                    2.1.1
 oauthlib                      3.2.0
 packaging                     21.3
-pip                           22.0.4
+pip                           22.2
 pluggy                        1.0.0
 py                            1.11.0
 pycparser                     2.21
