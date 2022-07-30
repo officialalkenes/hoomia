@@ -36,7 +36,7 @@ class UserManager(BaseUserManager):
             ValueError: ''
 
         Returns:
-            self.model: an instance of the User Manager
+            self.model: an instance of the Class
         """
 
         if not self.email:
