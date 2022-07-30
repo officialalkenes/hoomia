@@ -119,11 +119,15 @@ $ pip install -r requirements.txt
 
 ---
 
-## Markdown basics
+## Feature Implementation Link
+
+if you need my feature implementation guidelines, [follow this link]('https://www.searchenginejournal.com/ecommerce-guide/must-have-website-features/'). I will also implement some features of well recognized e-commerce platforms.
 
 A related example of is [here](https://www.jumia.com.ng/) & [here](https://www.amazon.com/). Expect some Modifications though.
 
-## Advanced Formatting tips
+## Chatbot Implementation
+
+Since this is a not a standard application, the use of channels might be too overwhelming. Scalability is top priority.
 
 ### `left` alignment
 
