@@ -1,7 +1,7 @@
 from requests import Response
 from rest_framework import  decorators, permissions, response, status, viewsets
 
-from .serializers import ProductCategorySerializer
+from .serializers import ProductCategorySerializer, ProductSerializer
 
 from apps.product.models import (Product, ProductAttribute, ProductAttributeValue,
                                  ProductCategory, ProductImage, ProductStore, ProductType)
@@ -50,3 +50,9 @@ def category_modify_view(request, pk):
         category.delete()
         return response.Response(status=status.HTTP_204_NO_CONTENT)
 
+
+class ProductApiView(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    permission_classes = permissions.IsAuthenticatedOrReadOnly()
+    serializer_class = ProductSerializer()
+    lookup_field = 'slug'
