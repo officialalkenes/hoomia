@@ -52,6 +52,10 @@ def category_modify_view(request, pk):
 
 
 class ProductApiView(viewsets.ModelViewSet):
+    """
+    lookup_field in ModelViewset allows individual lookup of the item
+    in the queryset provided.
+    """
     queryset = Product.objects.all()
     permission_classes = permissions.IsAuthenticatedOrReadOnly()
     serializer_class = ProductSerializer()
