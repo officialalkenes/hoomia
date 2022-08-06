@@ -36,13 +36,20 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = '__all__'
+        exclude = ['id', 'pkid']
 
+
+class ProductImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = ['image', 'alt_text']
+        read_only = True
 
 class ProductInventorySerializer(serializers.ModelSerializer):
     brand = BrandSerializer(many=False, read_only=True)
-    product_attribute_value = ProductAttributeValueSerializer(many=True, read_only=True)
-
+    product_attribute = ProductAttributeValueSerializer(source='product_attribute_value' ,many=True, read_only=True)
+    product = ProductSerializer(many=False, read_only=True)
+    images = ProductImageSerializer(source='product_image', many=True, )
     class Meta:
         models = ProductStore
         fields = ('sku', 'pc', 'product_type', 'product', 'brand', 'attribute_val', 'retail_price', 'product_att_val', 'store_price', 'sale_price', 'discount_percentage', 'weight', 'weight_type')
