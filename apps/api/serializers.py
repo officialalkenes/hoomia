@@ -9,18 +9,20 @@ class BrandSerializer(serializers.ModelSerializer):
         model = Brand
         fields = ['name']
 
-class ProductAttributeSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = ProductAttributeValue
-        exclude = ['pkid', 'id']
-
 
 class ProductCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProductCategory
         exclude = ['']
+
+
+
+class ProductAttributeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ProductAttributeValue
+        exclude = ['pkid', 'id']
 
 
 class ProductAttributeValueSerializer(serializers.ModelSerializer):
@@ -31,6 +33,7 @@ class ProductAttributeValueSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Product
         fields = '__all__'
@@ -38,7 +41,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class ProductInventorySerializer(serializers.ModelSerializer):
     brand = BrandSerializer(many=False, read_only=True)
-    product_attribute = ProductAttributeValueSerializer(many=True, read_only=True)
+    product_attribute_value = ProductAttributeValueSerializer(many=True, read_only=True)
 
     class Meta:
         models = ProductStore
