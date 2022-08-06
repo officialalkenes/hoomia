@@ -103,6 +103,11 @@ class ProductStore(AbstractModel):
     Price Information, Brand, sku, availability, discount price, sell price,
     store price, retail price etc.
     """
+    class ActiveProductQuerySet(models.QuerySet):
+        def active(self):
+            return self.filter(approved=True)
+
+
     sku = models.CharField(max_length=30, verbose_name=_("stock keeping unit"),
                            unique=True, help_text=_("format: required, unique = True, max-30"),
                            blank=True)
@@ -153,6 +158,9 @@ class ProductStore(AbstractModel):
     weight = models.DecimalField(decimal_places=2, max_digits=7, verbose_name=_("Product Weight"))
     weight_type = models.CharField(max_length=12, verbose_name=_("Weight Type"),
                                    help_text=_("format: required, type: 'choice', type: kg, g, mg"))
+
+
+    active = ActiveProductQuerySet.as_manager()
 
 
 class ProductImage(models.Model):
