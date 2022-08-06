@@ -1,7 +1,9 @@
 from rest_framework import serializers
 
-from apps.product.models import (Brand, ProductAttributeValue, ProductCategory, ProductStore,
-                                 Product, ProductImage, ProductType, ProductAttribute)
+from apps.product.models import (Brand, ProductAttributeValue,
+                                 ProductCategory, ProductStore,
+                                 Product, ProductImage, ProductType,
+                                 ProductAttribute)
 
 
 class BrandSerializer(serializers.ModelSerializer):
@@ -14,14 +16,14 @@ class ProductCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProductCategory
-        exclude = ['']
+        exclude = ['id']
 
 
 
 class ProductAttributeSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = ProductAttributeValue
+        model = ProductAttribute
         exclude = ['pkid', 'id']
 
 
@@ -49,12 +51,32 @@ class ProductImageSerializer(serializers.ModelSerializer):
         read_only = True
 
 
+class ProductTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductType
+        fields = ['name']
+        read_only = True
+
+
 class ProductInventorySerializer(serializers.ModelSerializer):
     brand = BrandSerializer(many=False, read_only=True)
-    product_attribute = ProductAttributeValueSerializer(source='product_attribute_value' ,many=True, read_only=True)
-    product = ProductSerializer(many=False, read_only=True)
-    images = ProductImageSerializer(source='product_image', many=True, )
+    product_attribute = ProductAttributeValueSerializer(
+                        source='product_attribute_value',
+                        many=True, read_only=True)
+
+    product = ProductSerializer(many=False,
+                                read_only=True)
+
+    images = ProductImageSerializer(source='product_image',
+                                    many=True)
+
+    product_type = ProductTypeSerializer(many=False)
+
     class Meta:
         models = ProductStore
-        fields = ('sku', 'pc', 'product_type', 'product', 'brand', 'attribute_val', 'retail_price', 'product_att_val', 'store_price', 'sale_price', 'discount_percentage', 'weight', 'weight_type')
+        fields = ('sku', 'pc', 'product_type', 'product',
+                  'brand', 'attribute_val', 'retail_price',
+                  'product_att_val', 'store_price',
+                  'sale_price', 'discount_percentage',
+                  'weight', 'weight_type')
 
