@@ -33,17 +33,21 @@ class ProductAttributeValueSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    image_path = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
         exclude = ['id', 'pkid']
 
+    def get_image_path(self, obj):
+        return self.context['request'].build_absolute_uri(obj.image_path.url)
 
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductImage
         fields = ['image', 'alt_text']
         read_only = True
+
 
 class ProductInventorySerializer(serializers.ModelSerializer):
     brand = BrandSerializer(many=False, read_only=True)
