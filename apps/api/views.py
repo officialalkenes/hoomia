@@ -1,5 +1,8 @@
 from requests import Response
-from rest_framework import  decorators, permissions, response, status, viewsets
+from rest_framework import views, decorators, permissions, response, status, viewsets
+from rest_framework.generics import (ListAPIView, ListCreateAPIView,
+                                     RetrieveAPIView, RetrieveUpdateAPIView,
+                                     DestroyAPIView)
 
 from .serializers import ProductCategorySerializer, ProductSerializer
 
@@ -60,3 +63,13 @@ class ProductApiView(viewsets.ModelViewSet):
     permission_classes = permissions.IsAuthenticatedOrReadOnly()
     serializer_class = ProductSerializer()
     lookup_field = 'slug'
+
+
+class CategoryListView():
+    pass
+
+
+class BillingRecordsView(views.generics.ListAPIView):
+    queryset = Billing.objects.all()
+    serializer_class = BillingRecordsSerializer
+    pagination_class = LargeResultsSetPagination
