@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from django.db import models
 
-class AbstractModel(models.Model):
+class BaseModel(models.Model):
     """
     An Abstract class (Redundancy Elimination)
     """
