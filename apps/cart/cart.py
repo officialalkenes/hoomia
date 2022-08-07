@@ -45,6 +45,8 @@ class Cart():
             product_id (str): _description_
             quantity (int, optional): _description_. Defaults to 1.
             update_quantity (bool, optional): _description_. Defaults to False.
+
+        Adds and Update the cart session on the fly
         """
         product_id = str(product_id)
 
@@ -58,8 +60,11 @@ class Cart():
 
             if self.cart[product_id]['quantity'] == 0:
                 self.remove(product_id)
+        self.save()
 
     def remove(self, product_id):
+
+
         if product_id in self.cart:
             del self.cart[product_id]
             self.save()
