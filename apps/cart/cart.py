@@ -70,10 +70,21 @@ class Cart():
             self.save()
 
     def save(self):
+        """
+        Stores the cart session and modify the state
+        """
         self.session[settings.CART_SESSION_ID] = self.cart
         self.session.modified = True
 
     def clear(self):
+        """
+        Clear out all data in the cart session id (product_ids and values)
+        """
         del self.session[settings.CART_SESSION_ID]
         self.session.modified = True
+
+
+    def get_total_cost(self):
+         for data in self.cart.keys():
+             self.cart[str(data)]['product'] = Product.objects.get(pk=data)
 
