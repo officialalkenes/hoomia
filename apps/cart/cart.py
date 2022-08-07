@@ -69,3 +69,11 @@ class Cart():
             del self.cart[product_id]
             self.save()
 
+    def save(self):
+        self.session[settings.CART_SESSION_ID] = self.cart
+        self.session.modified = True
+
+    def clear(self):
+        del self.session[settings.CART_SESSION_ID]
+        self.session.modified = True
+
