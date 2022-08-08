@@ -104,11 +104,16 @@ class ProductStore(AbstractModel):
     store price, retail price etc.
     """
     class ActiveProductQuerySet(models.QuerySet):
-        def active(self):
+        """
+        Custom created Querysets Manager
+        available => filters all products available only
+        discounted => filters all available products with discount value
+        """
+        def available(self):
             return self.filter(confirmed=True)
 
         def discounted(self):
-            return self.active(discount_percentage__gte=0.00)
+            return self.available.filter(discount_percentage__gte=0.00)
 
     sku = models.CharField(max_length=30, verbose_name=_("stock keeping unit"),
                            unique=True, help_text=_("format: required, unique = True, max-30"),
