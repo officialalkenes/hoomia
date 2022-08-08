@@ -6,6 +6,8 @@ from django.http import (HttpResponse,
 
 from rest_framework import (decorators,
                             generics,
+                            renderers,
+                            parsers,
                             response,
                             status,
                             views,

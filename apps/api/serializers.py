@@ -1,12 +1,28 @@
 from rest_framework import serializers
 
+from rest_framework.fields import CurrentUserDefault
+
+
 from apps.product.models import (Brand, ProductAttributeValue,
                                  ProductCategory, ProductStore,
                                  Product, ProductImage, ProductType,
                                  ProductAttribute)
 
 
+class VendorProductSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+    def save(self):
+        user = CurrentUserDefault()  # <= magic!
+
+
+
 class BrandSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Brand
         fields = ['name']
@@ -79,4 +95,5 @@ class ProductInventorySerializer(serializers.ModelSerializer):
                   'product_att_val', 'store_price',
                   'sale_price', 'discount_percentage',
                   'weight', 'weight_type')
+
 
