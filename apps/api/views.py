@@ -75,12 +75,23 @@ class ProductApiView(viewsets.ModelViewSet):
     """
     queryset = Product.objects.all()
     permission_classes = permissions.IsAuthenticatedOrReadOnly()
-    serializer_class = ProductSerializer()
+    serializer_class = ProductSerializer
     lookup_field = 'slug'
 
 
-class CategoryListView():
-    pass
+class CategoryListView(RetrieveAPIView):
+    queryset = ProductCategory.objects.all()
+    serializer_class = ProductCategorySerializer
+    lookup_field = 'slug'
+
+    def get_queryset(self):
+        return super().get_queryset()
+
+
+class CreateCategoryView(generics.CreateAPIView):
+    queryset = ProductCategory.objects.all()
+    serializer_class = ProductCategorySerializer
+
 
 
 @decorators.api_view(['GET'])
