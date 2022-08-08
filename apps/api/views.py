@@ -6,6 +6,7 @@ from django.http import (HttpResponse,
 
 from rest_framework import (decorators,
                             generics,
+                            mixins,
                             renderers,
                             parsers,
                             response,
@@ -92,6 +93,34 @@ class CreateCategoryView(generics.CreateAPIView):
     queryset = ProductCategory.objects.all()
     serializer_class = ProductCategorySerializer
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+        data = serializer.validated_data()
+        slug = slugify(data.get('name'))
+        return super().perform_create(serializer)
+
+
+
+class CreateCategoryView(generics.ListAPIView):
+    queryset = ProductCategory.objects.all()
+    serializer_class = ProductCategorySerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+        data = serializer.validated_data()
+        slug = slugify(data.get('name'))
+        return super().perform_create(serializer)
+
+class CreateCategoryView(generics.ListAPIView):
+    queryset = ProductCategory.objects.all()
+    serializer_class = ProductCategorySerializer
+    lookup_field = 'slug'
+
+    def perform_update(self, serializer):
+        serializer.save(user=self.request.user)
+        data = serializer.validated_data()
+        slug = slugify(data.get('name'))
+        return super().perform_create(serializer)
 
 
 @decorators.api_view(['GET'])
@@ -101,3 +130,20 @@ class BillingRecordsView(views.generics.ListAPIView):
     queryset = Billing.objects.all()
     serializer_class = BillingRecordsSerializer
     pagination_class = LargeResultsSetPagination
+
+
+
+class ProductMixinView(mixins.ListModelMixin, generics.GenericAPIView):
+    """_summary_
+    
+    """
+
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+
+    def post(self, requests, *args, **kwargs):
+        return ''
