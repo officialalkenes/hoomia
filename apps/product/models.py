@@ -69,7 +69,7 @@ class Brand(models.Model):
 
 class ProductType(models.Model):
     """
-    Product Type => 
+    Product Type =>
     """
     name = models.CharField(max_length=120, verbose_name=_("Product Name"),
                             unique=True)
@@ -105,8 +105,10 @@ class ProductStore(AbstractModel):
     """
     class ActiveProductQuerySet(models.QuerySet):
         def active(self):
-            return self.filter(approved=True)
+            return self.filter(confirmed=True)
 
+        def discounted(self):
+            return self.active(discount_percentage__gte=0.00)
 
     sku = models.CharField(max_length=30, verbose_name=_("stock keeping unit"),
                            unique=True, help_text=_("format: required, unique = True, max-30"),

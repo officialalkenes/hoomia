@@ -1,4 +1,16 @@
-from requests import Response
+from django.db import transaction
+from django.db import transaction
+
+from django.http import (HttpResponse,
+                         JsonResponse)
+
+from rest_framework import (decorators,
+                            generics,
+                            response,
+                            status,
+                            views,
+                            )
+
 from rest_framework import views, decorators, permissions, response, status, viewsets
 from rest_framework.generics import (ListAPIView, ListCreateAPIView,
                                      RetrieveAPIView, RetrieveUpdateAPIView,
@@ -69,6 +81,9 @@ class CategoryListView():
     pass
 
 
+@decorators.api_view(['GET'])
+def get_all_products(request):
+    pass
 class BillingRecordsView(views.generics.ListAPIView):
     queryset = Billing.objects.all()
     serializer_class = BillingRecordsSerializer

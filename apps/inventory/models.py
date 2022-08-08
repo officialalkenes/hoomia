@@ -29,4 +29,7 @@ class Order(models.Model):
         return self.items.all()
 
     def get_total_ordered(self):
-        return sum(item.product.price for item in self.items.product.poductstore)
+        return sum(item.product.price for item in self.items.all())
+
+    def __str__(self) -> str:
+        return f'{self.owner.username} - {self.trans_id}'
