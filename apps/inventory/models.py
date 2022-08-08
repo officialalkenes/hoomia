@@ -20,8 +20,13 @@ class ItemOrder(models.Model):
 class Order(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE,
                               related_name=_("order_owner"))
-    item_ordered = models.ManyToManyField(ItemOrder, verbose_name=_("Ordered Item"))
+    items = models.ManyToManyField(ItemOrder, verbose_name=_("Ordered Item"))
     ordered = models.BooleanField(default=False,
                                   help_text=_("format: bool, Boolean Check to seperate confirmed order from new"))
     creation_date = models.DateTimeField(auto_now_add=True)
 
+    def get_cart_items(self):
+        return self.items.all()
+
+    def get_total_ordered(self):
+        return sum(item.product.price for item in self.items.product.poductstore)
