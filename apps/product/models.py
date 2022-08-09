@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from django.utils.text import slugify
 
-from apps.common.models import AbstractModel
+from apps.common.models import BaseModel
 
 from mptt.models import MPTTModel, TreeForeignKey, TreeManyToManyField
 
@@ -44,7 +44,7 @@ class ProductCategory(MPTTModel):
             self.slug = slugify(self.name)
         return super().save(self, *args, **kwargs)
 
-class Product(AbstractModel):
+class Product(BaseModel):
     """
     Product Table
     """
@@ -100,7 +100,7 @@ class ProductAttributeValue(models.Model):
     attribute_value = models.CharField(max_length=100, verbose_name=_("Attribute Value"))
 
 
-class ProductStore(AbstractModel):
+class ProductStore(BaseModel):
     """
     Product Inventory/Store
     Price Information, Brand, sku, availability, discount price, sell price,

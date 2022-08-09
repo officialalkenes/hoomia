@@ -4,13 +4,8 @@ from django.http import (HttpResponse,
                          JsonResponse)
 from requests import request
 
-from rest_framework import (decorators,
-                            generics,
-                            mixins,
-                            renderers,
-                            parsers,
-                            response,
-                            status,
+from rest_framework import (decorators, generics, mixins,
+                            renderers, parsers, response, status,
                             views,
                             )
 
