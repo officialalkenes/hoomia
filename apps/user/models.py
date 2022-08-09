@@ -37,7 +37,15 @@ class User(AbstractBaseUser, PermissionsMixin):
         ),
     )
 
+    is_vendor =models.BooleanField(_('Is Vender'),
+        default=False,
+        help_text=_(
+                "Designates whether this user is a verified vendor"
+        ),
+    )
+
     USERNAME_FIELD = 'email'
+
     REQUIRED_FIELDS = ('username', 'fullname')
 
     objects = UserManager()
@@ -55,3 +63,4 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     # def get_absolute_url(self):
     #     return reverse("model_detail", kwargs={"pk": self.pk})
+    
