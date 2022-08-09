@@ -97,3 +97,11 @@ class ProductInventorySerializer(serializers.ModelSerializer):
                   'weight', 'weight_type')
 
 
+class ContactForm(serializers.Serializer):
+    email = serializers.EmailField()
+    message = serializers.CharField()
+
+    def save(self):
+        email = self.validated_data['email']
+        message = self.validated_data['message']
+        send_email(from_email=email, message=message)

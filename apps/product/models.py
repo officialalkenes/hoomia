@@ -57,6 +57,9 @@ class Product(AbstractModel):
     confirmed = models.BooleanField(default=False, verbose_name="Product Availability",
                                     help_text=_("format: bool, true == 'product available' "))
 
+    @property
+    def get_all_categories(self):
+        return [cat.name for cat in self.category]
 
 class Brand(models.Model):
     """
@@ -216,4 +219,3 @@ class Stock(models.Model):
     @property
     def get_available_unit(self):
         return self.units - self.sold_units
-

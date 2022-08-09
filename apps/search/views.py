@@ -1,5 +1,4 @@
 from django.http import HttpResponse
-from jmespath import search
 from rest_framework.views import APIView
 from rest_framework.pagination import LimitOffsetPagination
 from apps.api.serializers import ProductInventorySerializer

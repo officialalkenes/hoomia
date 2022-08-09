@@ -1,8 +1,8 @@
 from django.db import transaction
-from django.db import transaction
 
 from django.http import (HttpResponse,
                          JsonResponse)
+from requests import request
 
 from rest_framework import (decorators,
                             generics,
@@ -27,6 +27,11 @@ from apps.product.models import (Product, ProductAttribute, ProductAttributeValu
 class AllProductCategory(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductCategorySerializer()
+    authentication_classes = []
+    permission_classes = []
+    def get_queryset(self):
+        return super().get_queryset()
+
 
 @decorators.api_view(['GET'])
 def all_category_list_view(request):
@@ -147,3 +152,9 @@ class ProductMixinView(mixins.ListModelMixin, generics.GenericAPIView):
 
     def post(self, requests, *args, **kwargs):
         return ''
+
+
+class VendorProductView(ListCreateAPIView):
+    def get_queryset(self):
+        obj = Product.objects.filter(user=request.user)
+        return super().get_queryset()
