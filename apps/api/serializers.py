@@ -9,6 +9,32 @@ from apps.product.models import (Brand, ProductAttributeValue,
                                  ProductAttribute)
 
 
+class RecursiveField(serializers.Serializer):
+
+    def to_native(self, value):
+        return CategorySerializer(value, context={"parent": self.parent.object, "parent_serializer": self.parent})
+
+class CategorySerializer(serializers.ModelSerializer):
+    children = RecursiveField(many=True, required=False)
+    full_name = serializers.SerializerMethodField("get_full_name")
+    group_count = serializers.Field(source='get_group_count')
+
+    class Meta:
+        model = ProductCategory
+        fields = ('id', 'name', 'children',)
+
+    def get_full_name(self, obj):
+        name = obj.name
+
+        if "parent" in self.context:
+            parent = self.context["parent"]
+
+            parent_name = self.context["parent_serializer"].get_full_name(parent)
+
+            name = "%s - %s" % (parent_name, name, )
+
+        return name
+
 class VendorProductSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
