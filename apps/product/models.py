@@ -8,6 +8,10 @@ from apps.common.models import BaseModel
 
 from mptt.models import MPTTModel, TreeForeignKey, TreeManyToManyField
 
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
 """
     the hierarchy of the models are not Entirely Ignored.
 """
@@ -47,16 +51,30 @@ class ProductCategory(MPTTModel):
 class Product(BaseModel):
     """
     Product Table
+    id -> primary key of the table (hidden)
+    pkid -> search reference of the table. unique
+    created -> auto-added on save
+    updatd -> auto-added on modify
+    owner -> vendor's Account
+    name -> format(str) e.g Airmax shoe
+    slug -> search reference
+    category -> product Category field Shoes -> Men Shoes
+    description -> descriptive feature of the product.
+    confirmed -> format(bool): permission based on display
     """
     owner = models.ForeignKey(User, on_delete=models.CASCADE,
                               related_name='product_owner')
-    
+
     name = models.CharField(max_length=120, verbose_name=_("Product Name"),
                             unique=True)
+
     slug = models.SlugField(max_length=120, verbose_name=_("Product Slug"))
+
     category = TreeManyToManyField(ProductCategory,
                                  related_name='product-cat')
+
     description = models.TextField(verbose_name=_("Product Description"))
+
     confirmed = models.BooleanField(default=False, verbose_name="Product Availability",
                                     help_text=_("format: bool, true == 'product available' "))
 
