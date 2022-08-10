@@ -32,6 +32,10 @@ class ProductReview(models.Model):
     def __str__(self) -> str:
         return f'{self.user.username} - {self.product.name}'
 
+    @property
+    def get_overall_rating(self):
+        pass
+
     class Meta:
         verbose_name = _("Product")
         verbose_name_plural = _("Products")
