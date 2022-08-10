@@ -48,6 +48,9 @@ class Product(BaseModel):
     """
     Product Table
     """
+    owner = models.ForeignKey(User, on_delete=models.CASCADE,
+                              related_name='product_owner')
+    
     name = models.CharField(max_length=120, verbose_name=_("Product Name"),
                             unique=True)
     slug = models.SlugField(max_length=120, verbose_name=_("Product Slug"))

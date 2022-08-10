@@ -1,3 +1,4 @@
+
 from rest_framework import serializers
 
 from rest_framework.fields import CurrentUserDefault
@@ -17,11 +18,10 @@ class RecursiveField(serializers.Serializer):
 class CategorySerializer(serializers.ModelSerializer):
     children = RecursiveField(many=True, required=False)
     full_name = serializers.SerializerMethodField("get_full_name")
-    group_count = serializers.Field(source='get_group_count')
 
     class Meta:
         model = ProductCategory
-        fields = ('id', 'name', 'children',)
+        fields = ('id', 'name', 'parent',)
 
     def get_full_name(self, obj):
         name = obj.name
@@ -34,6 +34,12 @@ class CategorySerializer(serializers.ModelSerializer):
             name = "%s - %s" % (parent_name, name, )
 
         return name
+
+class ProductTypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ProductType
+        fields = ('name',)
 
 class VendorProductSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
