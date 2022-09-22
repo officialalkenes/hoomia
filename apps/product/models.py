@@ -16,7 +16,6 @@ User = get_user_model()
     the hierarchy of the models are not Entirely Ignored.
 """
 
-
 class ProductCategory(MPTTModel):
     """
     Product Category like clothes, Electronics, Computers
@@ -84,8 +83,10 @@ class Product(BaseModel):
 
 class Brand(models.Model):
     """
-    Product Brand Names Like
+    Product Brand Names Like Adidas, Nike, Nokia, Apple
+    slug -> effective for search reference
     """
+
     name = models.CharField(max_length=120, verbose_name=_("Product Name"),
                             unique=True)
     slug = models.SlugField(max_length=120, verbose_name=_("Product Slug"))

@@ -41,6 +41,7 @@ class ProductTypeSerializer(serializers.ModelSerializer):
         model = ProductType
         fields = ('name',)
 
+
 class VendorProductSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 

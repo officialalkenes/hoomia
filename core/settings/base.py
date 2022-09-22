@@ -135,3 +135,6 @@ ELASTICSEARCH_DSL={
         'hosts': 'localhost:9200'
     },
 }
+
+SESSION_COOKIE_AGE = 86400
+CART_SESSION_ID = 'cart'

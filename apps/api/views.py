@@ -4,7 +4,7 @@ from django.http import (HttpResponse,
                          JsonResponse)
 from requests import request
 
-from rest_framework import (decorators, generics, mixins,
+from rest_framework import (authentication, decorators, generics, mixins,
                             renderers, parsers, response, status,
                             views,
                             )
@@ -14,6 +14,7 @@ from rest_framework.generics import (ListAPIView, ListCreateAPIView,
                                      RetrieveAPIView, RetrieveUpdateAPIView,
                                      DestroyAPIView)
 
+from .authentication import TokenAuthentication
 from .serializers import ProductCategorySerializer, ProductSerializer
 
 from apps.product.models import (Product, ProductAttribute, ProductAttributeValue,
@@ -22,7 +23,7 @@ from apps.product.models import (Product, ProductAttribute, ProductAttributeValu
 class AllProductCategory(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductCategorySerializer()
-    authentication_classes = []
+    authentication_classes = [authentication.SessionAuthentication, TokenAuthentication]
     permission_classes = []
     def get_queryset(self):
         return super().get_queryset()
@@ -67,6 +68,18 @@ def category_modify_view(request, pk):
     if request.method == 'DELETE':
         category.delete()
         return response.Response(status=status.HTTP_204_NO_CONTENT)
+
+@decorators.api_view(['POST'])
+def create_order(request):
+    pass
+
+
+@decorators.api_view(['PUT'])
+def update_order_info(request, pk):
+    ...
+
+
+
 
 
 class ProductApiView(viewsets.ModelViewSet):
