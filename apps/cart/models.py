@@ -14,10 +14,6 @@ class Cart(models.Model):
     order = models.BooleanField(default=False)
     total_price = models.DecimalField(decimal_places=2, max_digits=7, default=0.00)
 
-    @property
-    def get_total_cart_price(self):
-        pass
-
     class Meta:
         verbose_name = _("Cart")
         verbose_name_plural = _("Carts")
@@ -26,7 +22,8 @@ class Cart(models.Model):
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='cartitems')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-
+    order = models.BooleanField(default=False)
     class Meta:
         verbose_name = _("Cart Item")
         verbose_name_plural = _("Cart Items")
+
