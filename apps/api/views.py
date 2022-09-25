@@ -20,13 +20,29 @@ from .serializers import ProductCategorySerializer, ProductSerializer
 from apps.product.models import (Product, ProductAttribute, ProductAttributeValue,
                                  ProductCategory, ProductImage, ProductStore, ProductType)
 
-class AllProductCategory(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
-    serializer_class = ProductCategorySerializer()
-    authentication_classes = [authentication.SessionAuthentication, TokenAuthentication]
-    permission_classes = []
-    def get_queryset(self):
-        return super().get_queryset()
+class AllProductCategory(views.APIView):
+    def get(self):
+        queryset = Product.objects.filter(is_available=True)
+        serializer = ProductCategorySerializer(queryset=queryset)
+        authentication_classes = [authentication.SessionAuthentication, TokenAuthentication]
+        permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+        return views.Response(serializer.data)
+
+class ProductBrandList(views.APIView):
+    def get(self):
+        queryset = Product.objects.filter(is_available=True)
+        serializer = ProductCategorySerializer(queryset=queryset)
+        authentication_classes = [authentication.SessionAuthentication, TokenAuthentication]
+        permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+        return views.Response(serializer.data)
+
+
+class ProductCategoryDetails(views.APIView):
+    def get(self, request):
+        pass
+        return views.Response(serializer.data)
+
+
 
 
 @decorators.api_view(['GET'])
@@ -79,7 +95,8 @@ def update_order_info(request, pk):
     ...
 
 
-
+class CreateBasketOrder(generics.CreateAPIView):
+    queryset = Order.objects.all()
 
 
 class ProductApiView(viewsets.ModelViewSet):
