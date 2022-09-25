@@ -17,7 +17,7 @@ from rest_framework.generics import (ListAPIView, ListCreateAPIView,
 from .authentication import TokenAuthentication
 from .serializers import ProductCategorySerializer, ProductSerializer
 
-from apps.product.models import (Product, ProductAttribute, ProductAttributeValue,
+from apps.product.models import (Brand, Product, ProductAttribute, ProductAttributeValue,
                                  ProductCategory, ProductImage, ProductStore, ProductType)
 
 class AllProductCategory(views.APIView):
@@ -30,7 +30,7 @@ class AllProductCategory(views.APIView):
 
 class ProductBrandList(views.APIView):
     def get(self):
-        queryset = Product.objects.filter(is_available=True)
+        queryset = Brand.objects.all()
         serializer = ProductCategorySerializer(queryset=queryset)
         authentication_classes = [authentication.SessionAuthentication, TokenAuthentication]
         permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -38,11 +38,22 @@ class ProductBrandList(views.APIView):
 
 
 class ProductCategoryDetails(views.APIView):
+    """
+    All product under a selected category are displayed
+    """
     def get(self, request):
         pass
         return views.Response(serializer.data)
 
-
+class BrandProducts(views.APIView):
+    """
+    List all Product for a certain brand
+    """
+    def get(self, request, pk):
+        pk = pk
+        queryset = Product.objects.filter(brand=pk)
+        serializer = ProductSerializer(queryset=queryset)
+        return views.Response(serializer.data)
 
 
 @decorators.api_view(['GET'])
