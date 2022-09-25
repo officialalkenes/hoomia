@@ -17,4 +17,6 @@ class CartSerializer(ModelSerializer):
 
 
 class CartItemSerializer(ModelSerializer):
-    pass
+    class Meta:
+        model = CartItems
+        exclude = ('')

@@ -55,6 +55,11 @@ class BrandProducts(views.APIView):
         serializer = ProductSerializer(queryset=queryset)
         return views.Response(serializer.data)
 
+class ContactUsMail(views.APIView):
+    """View for the Contact Us Mail"""
+    def post(self, request):
+        pass
+
 
 @decorators.api_view(['GET'])
 def all_category_list_view(request):
