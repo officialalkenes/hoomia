@@ -42,7 +42,9 @@ class ProductCategoryDetails(views.APIView):
     All product under a selected category are displayed
     """
     def get(self, request):
-        pass
+        queryset = AllProductCategory.objects.filter(id=id).prefetch_related(
+            'product', 'product__brand'
+        )
         return views.Response(serializer.data)
 
 class BrandProducts(views.APIView):
