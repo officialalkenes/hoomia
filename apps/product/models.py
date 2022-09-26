@@ -115,7 +115,6 @@ class ProductAttributeValue(models.Model):
     with attribute value format of Product Attribute => Product Attribute Values.
     Size => 10, 11
     color => red, green, blue
-
     """
     product_attribute = models.ForeignKey(ProductAttribute, on_delete=models.CASCADE,
                                           related_name='product_attribute')

@@ -15,7 +15,7 @@ def add_items_to_cart(request):
         pass
 
 
-
-
 def update_cart_items(request):
-    serializer = CartSerializer
+    serializer = CartSerializer(data=serializer.data)
+
+
